@@ -19,6 +19,14 @@ spec:
         image: nicopaez/jobvacancy-ruby:1.0.5
         envFrom:
           - configMapRef:
-              name: jobvacancyconfig
+            name: jobvacancyconfig
           - secretRef:
-              name: jobvacancysecret
+            name: jobvacancysecret
+      - name: postgres
+        image: postgres:10.1 # Sets Image
+        imagePullPolicy: "IfNotPresent"
+        ports:
+          - containerPort: 5432  # Exposes container port
+        envFrom:
+          - configMapRef:
+            name: postgres-config
